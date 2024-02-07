@@ -1,8 +1,9 @@
 from src.crud.repository.repository import repo
+from sqlalchemy.orm import Session
 
 class CrudService:
-    def __init__(self):
-        self.repo=repo()
+    def __init__(self,db:Session):
+        self.repo=repo(db)
 
     def get(self,index):
         msg=self.repo.get(index=index)

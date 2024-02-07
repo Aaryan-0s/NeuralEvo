@@ -28,5 +28,5 @@ class BlogRepo(AbstractModel):
     content = sa.Column(sa.VARCHAR)
     author = sa.Column(sa.VARCHAR)
     publication_date = sa.Column(sa.DATE)
-    tags = sa.Column(sa.JSON)
+    tags = sa.Column(sa.ARRAY(sa.VARCHAR))
     

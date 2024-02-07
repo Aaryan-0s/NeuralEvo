@@ -3,10 +3,11 @@ from fastapi import HTTPException
 from src.entrypoint.database import get_db
 from src.entrypoint.database import user
 from src.crud.repository.crud_repository import CrudRepo
+from sqlalchemy.orm import Session
 
 class InMemoryRep:
-    def __init__(self):
-        self.db=get_db()
+    def __init__(self,db:Session):
+        self.db=db
     def base_query(self):
         return self.db.query(CrudRepo)
 
@@ -36,6 +37,7 @@ class InMemoryRep:
         return self.base_query().all()
     
     def delete(self,index):
-        return self.base_query().filter(CrudRepo.id==index).delete()  
+        self.base_query().filter(CrudRepo.id==index).delete()  
+        return "deleted successfully"
 
 repo=InMemoryRep

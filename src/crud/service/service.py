@@ -1,4 +1,4 @@
-from src.crud.repository.repository import repo
+from src.user.repository.repository import repo
 from sqlalchemy.orm import Session
 
 class CrudService:
@@ -15,17 +15,7 @@ class CrudService:
     def add(self,data):
         return self.repo.add(item=data)
     
-    def update(self,index,data):
-        data1=self.repo.get(index=index)
-       
-        for key,value in data.items():
-           setattr(data1,key,value)
-        
-        
-        return self.repo.update(change=data1)
     
-    def delete(self,index):
-        return self.repo.delete(index=index)
 
     
 
